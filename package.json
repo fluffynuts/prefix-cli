@@ -1,0 +1,40 @@
+{
+  "name": "prefix-cli",
+  "version": "0.0.5",
+  "description": "Mechanism for prefixing output from multiplexed cli applications",
+  "main": "index.js",
+  "scripts": {
+    "zarro": "zarro",
+    "increment-package-version-beta": "cross-env VERSION_INCREMENT_STRATEGY=patch run-s increment-package-version",
+    "increment-package-version-release": "cross-env VERSION_INCREMENT_STRATEGY=minor run-s increment-package-version",
+    "increment-package-version": "run-s \"zarro increment-package-json-version\"",
+    "release": "run-s increment-package-version-release push tag-and-push",
+    "tag-and-push": "zarro tag-and-push",
+    "push": "npm publish",
+    "release-beta": "run-s increment-package-version-beta push-beta",
+    "push-beta": "npm publish --tag beta"
+  },
+  "bin": {
+    "pre": "index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/fluffynuts/prefix-cli.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/fluffynuts/prefix-cli/issues"
+  },
+  "homepage": "https://github.com/fluffynuts/prefix-cli#readme",
+  "dependencies": {
+    "chalk": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^13.13.4",
+    "npm-run-all": "^4.1.5",
+    "simple-git": "^2.2.0",
+    "zarro": "^1.24.0"
+  }
+}
