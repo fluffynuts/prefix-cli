@@ -1,6 +1,6 @@
 {
   "name": "prefix-cli",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Mechanism for prefixing output from multiplexed cli applications",
   "main": "index.js",
   "scripts": {
