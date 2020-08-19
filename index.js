@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 const
   readline = require("readline"),
-  chalk = require("chalk");
+  colors = require("ansi-colors");
 
 let prefix = process.argv[2] || "";
 const color = process.argv[3] || "white";
@@ -14,15 +14,14 @@ const rl = readline.createInterface({
   terminal: false
 });
 
-let chalkFn = chalk[color];
-if (!chalkFn) {
-  console.error("chalk has no color: " + color);
-  chalkFn = s => s;
-} else {
-  chalkFn = chalkFn.bind(chalk);
+let colorFn = colors[color];
+if (colorFn === undefined) {
+  console.error(`color ${color} is not known! pick one from the following:`);
+  Object.keys(colors).forEach(k => console.log(` - ${k}`));
+  colorFn = (s => s);
 }
 
 rl.on('line', function(line){
-    console.log(`${chalk[color](prefix)} ${line}`);
+    console.log(`${colors[color](prefix)} ${line}`);
 })
 
